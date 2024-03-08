@@ -1,3 +1,9 @@
 import type { JSONRecord } from "@mcswift/types";
-export declare const getInfo: (root?: string) => JSONRecord;
-export declare const setInfo: (content: JSONRecord, root?: string) => void;
+export declare class NpmPackage {
+    root: string;
+    constructor(root: string);
+    getInfo(): JSONRecord;
+    setInfo(content: JSONRecord): void;
+    static getInfo: (root?: string) => JSONRecord;
+    static setInfo: (content: JSONRecord, root?: string) => void;
+}
