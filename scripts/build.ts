@@ -8,6 +8,8 @@ import { getFileList } from "../src"
 log(`building`)
 const root = cwd()
 const lib = Path.join(root, 'lib')
+const commonjs = Path.join(lib,"commonjs")
+const esm = Path.join(lib,"esm")
 const src = Path.join(root, 'src')
 const build = async()=>{
   // 获得全部要构建的文件
@@ -15,6 +17,8 @@ const build = async()=>{
   // 清空构建目录
   FileSystem.ensureDirSync(lib)
   FileSystem.emptyDirSync(lib)
+  FileSystem.ensureDirSync(commonjs)
+  FileSystem.ensureDirSync(esm)
   const tasks = []
   // 构建
   tasks.push(_build({
@@ -23,7 +27,16 @@ const build = async()=>{
     drop: ['debugger'],
     target: ['es2015'],
     bundle: false,
-    outdir: lib,
+    outdir: commonjs,
+    format: 'esm'
+  }))
+  tasks.push(_build({
+    entryPoints: fileList,
+    platform: 'node',
+    drop: ['debugger'],
+    target: ['es2015'],
+    bundle: false,
+    outdir: esm,
     format: 'esm'
   }))
   // 生成类型

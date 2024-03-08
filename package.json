@@ -7,8 +7,9 @@
   "types": "types/index.d.ts",
   "exports":{
     "types":"./types/index.d.ts",
-    "import":"./lib/index.js",
-    "default":"./lib/index.js"
+    "import":"./lib/esm/index.js",
+    "require":"./lib/commonjs/index.js",
+    "default":"./lib/esm/index.js"
   },
   "scripts": {
     "build": "tsx scripts/build.ts"
