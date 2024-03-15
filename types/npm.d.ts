@@ -1,11 +1,11 @@
-import type { JSONRecord } from "@mcswift/types";
-export declare class NpmPackage {
+import type { NPM } from "@mcswift/types";
+export declare class NpmPackage implements NPM.Package {
     root: string;
     constructor(root: string);
     private cache;
-    get name(): string | number | true | JSONRecord | import("@mcswift/types").JSONValue[] | undefined;
-    getInfo(): JSONRecord;
-    setInfo(content: JSONRecord): void;
-    static getInfo: (root?: string) => JSONRecord;
-    static setInfo: (content: JSONRecord, root?: string) => void;
+    get data(): NPM.Package;
+    getPackageInfo(): NPM.Package;
+    setPackageInfo<K extends keyof Required<NPM.Package>>(key: K, value: Required<NPM.Package>[K]): void;
+    static getPackageInfo: (root?: string) => NPM.Package;
+    static setPackageInfo: <K extends keyof NPM.Package>(key: K, value: Required<NPM.Package>[K], root?: string) => void;
 }

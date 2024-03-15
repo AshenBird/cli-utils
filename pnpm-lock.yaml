@@ -17,8 +17,8 @@ dependencies:
 
 devDependencies:
   '@mcswift/types':
-    specifier: ^0.0.4
-    version: 0.0.4
+    specifier: ^0.0.5
+    version: 0.0.5
   '@types/fs-extra':
     specifier: ^11.0.4
     version: 11.0.4
@@ -448,8 +448,8 @@ packages:
     dev: false
     optional: true
 
-  /@mcswift/types@0.0.4:
-    resolution: {integrity: sha512-Wi5fvfK2DDHvOprCYj0vZEu4J9i0/y8XwG8COGy0Mc0EWvNYtHO7IScnprPMykmLqWjTNZyENrgLDD79DaMPBQ==}
+  /@mcswift/types@0.0.5:
+    resolution: {integrity: sha512-mIIGyMkjHy1WAY8qv4yGoMqiz9/VpLNGwGSzz6Jv4wDcthMxJ1TSgv34EBiXwzKTUJ6rnnH/hqTMEM2BW+7Dbg==}
     dev: true
 
   /@types/fs-extra@11.0.4:

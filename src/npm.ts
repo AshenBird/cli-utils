@@ -1,8 +1,8 @@
 import { getAbsolutePath } from "./path";
 import { readJSONSync, writeJSONSync } from "fs-extra/esm";
-import type { JSONRecord,NPM } from "@mcswift/types";
+import type { NPM } from "@mcswift/types";
 
-export class NpmPackage {
+export class NpmPackage  {
   root: string;
   constructor(root: string) {
     this.root = getAbsolutePath(root);
@@ -15,28 +15,30 @@ export class NpmPackage {
         }
         return r
       }
-    })
+    }) as NpmPackage & NPM.Package
   }
   private cache:NPM.Package|null = null
   get data(){
     if(this.cache)return this.cache
-    return this.getInfo();
+    return this.getPackageInfo();
   }
-  getInfo(){
-    this.cache = NpmPackage.getInfo(this.root)
+  getPackageInfo(){
+    this.cache = NpmPackage.getPackageInfo(this.root)
     Object.seal(this.cache)
     return this.cache
   }
-  setInfo(content: JSONRecord){
-    return NpmPackage.setInfo(content,this.root)
+  setPackageInfo<K extends keyof Required<NPM.Package>>(key:K, value:Required<NPM.Package>[K]){
+    return NpmPackage.setPackageInfo(key,value,this.root)
   }
-  static getInfo = (root = "./") => {
+  static getPackageInfo = (root = "./") => {
     const p = getAbsolutePath(root);
-    const result = readJSONSync(`${p}/package.json`) as JSONRecord;
+    const result = readJSONSync(`${p}/package.json`) as NPM.Package;
     return result;
   };
-  static setInfo = (content: JSONRecord, root = "./") => {
+  static setPackageInfo = <K extends keyof Required<NPM.Package>>(key:K, value:Required<NPM.Package>[K], root = "./") => {
     const p = getAbsolutePath(root);
+    const content = this.getPackageInfo(root)
+    content[key] = value
     const result = writeJSONSync(`${p}/package.json`, content, {
       spaces: 2,
       EOL: "\n",

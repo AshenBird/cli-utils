@@ -1,6 +1,6 @@
 {
   "name": "@mcswift/cli-utils",
-  "version": "0.0.7",
+  "version": "0.0.11",
   "description": "",
   "main": "lib/index.js",
   "type": "module",
@@ -20,7 +20,7 @@
   "author": "",
   "license": "MIT",
   "devDependencies": {
-    "@mcswift/types": "^0.0.4",
+    "@mcswift/types": "^0.0.5",
     "@types/fs-extra": "^11.0.4",
     "@types/node": "^20.11.24",
     "tsx": "^4.7.1",
